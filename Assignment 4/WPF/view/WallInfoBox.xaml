@@ -1,0 +1,36 @@
+﻿<Window x:Class="Assignments4.Commands.View.WallInfoBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MyClass Viewer" Height="500" Width="800">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Name -->
+        <TextBlock FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"
+                   Text="{Binding SelectedWallName}" />
+
+        <!-- Properties -->
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  EnableRowVirtualization="True"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  VirtualizingPanel.ScrollUnit="Pixel"
+                  ItemsSource="{Binding SelectedWallProperties}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="200" Header="Key"   Binding="{Binding Key}" />
+                <DataGridTextColumn Width="*"   Header="Value" Binding="{Binding Value}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Navigation (using Commands) -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+            <Button Content="Previous" Command="{Binding PreviousCommand}" Margin="0,0,8,0"/>
+            <Button Content="Next"     Command="{Binding NextCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

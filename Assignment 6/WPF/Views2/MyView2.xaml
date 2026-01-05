@@ -1,0 +1,19 @@
+﻿<!-- File: Views/MyView2.xaml -->
+<Window x:Class="Assignment6.Commands.Views.MyView2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Walls" Height="300" Width="400">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Items}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  Margin="8">
+            <DataGrid.Columns>
+                <!-- Show a readable numeric ElementId -->
+                <DataGridTextColumn Width="150" Header="Id" Binding="{Binding Id.IntegerValue}" />
+                <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

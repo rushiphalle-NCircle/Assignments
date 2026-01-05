@@ -1,0 +1,33 @@
+﻿<Window x:Class="Assignment3.Commands.FloorPlanSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Floor Plan Selector" Height="180" Width="360" WindowStartupLocation="CenterOwner">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Dropdown -->
+        <ComboBox x:Name="MyComboBox"
+                  Width="260" Height="30"
+                  ItemsSource="{Binding Items}"
+                  DisplayMemberPath="Name" />
+
+        <!-- Spacer -->
+        <Rectangle Grid.Row="1" Height="8" Fill="Transparent"/>
+
+        <!-- Activate button -->
+        <Button Grid.Row="2"
+                Width="120" Height="30"
+                HorizontalAlignment="Left"
+                Content="Activate"
+                Click="Activate_Click" Margin="34,33,0,-33" RenderTransformOrigin="0.039,1.701"/>
+
+        <Button Content="Close" Padding="10,4" IsCancel="True" Margin="172,33,34,-33" Grid.Row="2"/>
+
+
+
+    </Grid>
+</Window>
