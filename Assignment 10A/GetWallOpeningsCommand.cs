@@ -56,7 +56,7 @@ namespace Assignment10.Commands
             //td.Show();
 
             // (Optional) WPF view (uncomment if you want rich UI)
-             var win = new Assignment10.Commands.Views.WallOpeningsWindow { DataContext = vm };
+            var win = new Assignment10.Commands.Views.WallOpeningsWindow { DataContext = vm };
             win.ShowDialog();
 
             return Result.Succeeded;

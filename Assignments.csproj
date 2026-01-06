@@ -59,6 +59,15 @@
     <Compile Include="Assignment 10A\WPF\Views\WallOpeningsWindow.xaml.cs">
       <DependentUpon>WallOpeningsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assignment 14\Class1.cs" />
+    <Compile Include="Assignment 15\Commands\LoadFamiliesCommand.cs" />
+    <Compile Include="Assignment 15\Model\FamilyLoadRequest.cs" />
+    <Compile Include="Assignment 15\Model\SimpleFamilyLoadOptions.cs" />
+    <Compile Include="Assignment 15\viewmodel\MainViewModel.cs" />
+    <Compile Include="Assignment 15\viewmodel\RelayCommand.cs" />
+    <Compile Include="Assignment 15\Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assignment 1\LevelCommand.cs" />
     <Compile Include="Assignment 1\WPF\model\LevelPlanInfo.cs" />
     <Compile Include="Assignment 1\WPF\viewModel\MyViewModel.cs" />
@@ -133,6 +142,24 @@
     <Compile Include="Assignment 9\wpf\view\WallBox.xaml.cs">
       <DependentUpon>WallBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Asssignment13\Commands\Class1.cs" />
+    <Compile Include="Asssignment13\Model\DoorParameterModel.cs" />
+    <Compile Include="Asssignment13\ViewModel\DoorParametersViewModel.cs" />
+    <Compile Include="Asssignment13\Views\DoorParametersWindow.xaml.cs">
+      <DependentUpon>DoorParametersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Asssingment12\Commands\MyExternalCommandWpf.cs" />
+    <Compile Include="Asssingment12\Model\MyModel.cs" />
+    <Compile Include="Asssingment12\ViewModel\MyViewModel.cs" />
+    <Compile Include="Asssingment12\Views\MyView.xaml.cs">
+      <DependentUpon>MyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Asssingment11\Commands\MyExternalCommandWpf.cs" />
+    <Compile Include="Asssingment11\Model\MyModel.cs" />
+    <Compile Include="Asssingment11\ViewModel\MyViewModel.cs" />
+    <Compile Include="Asssingment11\Views\MyView.xaml.cs">
+      <DependentUpon>MyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assignment 1\WPF\views\LevelPlanWindow.xaml.cs">
       <DependentUpon>LevelPlanWindow.xaml</DependentUpon>
@@ -140,6 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assignment 10A\WPF\Views\WallOpeningsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment 15\Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +219,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assignment 9\wpf\view\WallBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Asssignment13\Views\DoorParametersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Asssingment12\Views\MyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Asssingment11\Views\MyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,6 +23,15 @@
                 Width="120" Height="30"
                 HorizontalAlignment="Center"
                 Content="Activate"
-                Click="Activate_Click" Margin="0,35,0,-35"/>
+                Click="Activate_Click" Margin="0,35,0,-35">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.396"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </Window>

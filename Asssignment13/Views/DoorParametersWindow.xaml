@@ -1,0 +1,58 @@
+﻿<!-- File: DoorParametersWindow.xaml -->
+<Window x:Class="Assignment13.Commands.DoorParametersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Set Door Parameters" Height="360" Width="560"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+    <DockPanel Margin="10">
+        <!-- Header -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,0,0,8">
+            <TextBlock FontSize="14" FontWeight="Bold" Text="Apply parameters to selected doors"/>
+            <TextBlock Margin="0,4,0,0" Text="{Binding DoorCount, StringFormat=Selected doors: {0}}"/>
+            <CheckBox Margin="0,6,0,0" Content="Apply only non-empty values"
+                      IsChecked="{Binding ApplyOnlyNonEmpty}"/>
+        </StackPanel>
+
+        <!-- Parameter grid -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="#CCC" BorderThickness="1" Padding="6" Grid.Row="0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Parameters}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,4,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Margin="0,0,6,0" VerticalAlignment="Center" Text="Name:"/>
+                                    <TextBox Grid.Column="1" MinWidth="160" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Grid.Column="2" Margin="12,0,6,0" VerticalAlignment="Center" Text="Value:"/>
+                                    <TextBox Grid.Column="3" MinWidth="160" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <CheckBox Grid.Column="4" Margin="12,0,0,0" Content="Enable" IsChecked="{Binding Enabled}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+                <Button Content="Add Row" Width="90" Margin="0,0,8,0" Command="{Binding AddRowCommand}"/>
+                <Button Content="Remove Last" Width="100" Margin="0,0,8,0" Command="{Binding RemoveSelectedLastRowCommand}"/>
+                <Button Content="Apply" Width="90" Margin="0,0,8,0" Command="{Binding ApplyCommand}"/>
+                <Button Content="Cancel" Width="90" Command="{Binding CancelCommand}"/>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

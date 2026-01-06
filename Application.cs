@@ -56,9 +56,27 @@ namespace Assignments
 
             myRibbon.CreatePanel("Assignment 10");
             myRibbon.CreateButton("Assignment 10", "Show Openings", "Assignment10.Commands.GetWallOpeningsCommand", "3.jpeg");
+
+            myRibbon.CreatePanel("Assignment 11");
+            myRibbon.CreateButton("Assignment 11", "Show Openings", "Assignment11.Commands.MyExternalCommandWpf", "3.jpeg");
+
+            myRibbon.CreatePanel("Assignment 12");
+            myRibbon.CreateButton("Assignment 12", "Show Hirerchy", "Assignment12.Commands.MyExternalCommandWpf", "3.jpeg");
+
+            myRibbon.CreatePanel("Assignment 13");
+            myRibbon.CreateButton("Assignment 13", "Show Hirerchy", "Assignment13.Commands.SetDoorParametersCommand", "3.jpeg");
+
+            myRibbon.CreatePanel("Assignment 14");
+            myRibbon.CreateButton("Assignment 14", "Create new \n View", "Assignment14.Commands.CreateViewsCommand", "3.jpeg");
+
+            myRibbon.CreatePanel("Assignment 15");
+            myRibbon.CreateButton("Assignment 15", "Get Folders", "FamilyLoader.Commands.LoadFamiliesCommand", "3.jpeg");
+
             return Result.Succeeded;
         }
     }
+    
+
 
     public class Ribbon
     {

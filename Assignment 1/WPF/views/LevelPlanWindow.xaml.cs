@@ -1,9 +1,5 @@
-﻿
-// Views/LevelPlanWindow.xaml.cs
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
-
 using Asignment1.Commands.Models;
 using Asignment1.Commands.ViewModel;
 
