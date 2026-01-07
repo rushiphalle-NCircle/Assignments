@@ -42,10 +42,6 @@ namespace Assignment13.Commands
             _doc = uidoc.Document ?? throw new ArgumentNullException(nameof(uidoc));
             _doorIds = doorIds ?? Array.Empty<ElementId>();
 
-            // Provide three common defaults. You can add more rows from UI.
-            Parameters.Add(new DoorParameterModel { Name = "Mark", Value = "", Enabled = true });
-            Parameters.Add(new DoorParameterModel { Name = "Comments", Value = "", Enabled = true });
-            Parameters.Add(new DoorParameterModel { Name = "Fire Rating", Value = "", Enabled = true });
 
             AddRowCommand = new RelayCommand(_ => Parameters.Add(new DoorParameterModel { Enabled = true }), _ => true);
             RemoveSelectedLastRowCommand = new RelayCommand(_ =>

@@ -142,6 +142,7 @@
     <Compile Include="Assignment 9\wpf\view\WallBox.xaml.cs">
       <DependentUpon>WallBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assignment Z\Class1.cs" />
     <Compile Include="Asssignment13\Commands\Class1.cs" />
     <Compile Include="Asssignment13\Model\DoorParameterModel.cs" />
     <Compile Include="Asssignment13\ViewModel\DoorParametersViewModel.cs" />

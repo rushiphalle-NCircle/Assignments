@@ -72,10 +72,14 @@ namespace Assignments
             myRibbon.CreatePanel("Assignment 15");
             myRibbon.CreateButton("Assignment 15", "Get Folders", "FamilyLoader.Commands.LoadFamiliesCommand", "3.jpeg");
 
+                myRibbon.CreatePanel("Assignment Z");
+            myRibbon.CreateButton("Assignment Z", "Align Pipes", "A.AlignPipeEndpoints", "3.jpeg");
+
             return Result.Succeeded;
         }
     }
     
+
 
 
     public class Ribbon

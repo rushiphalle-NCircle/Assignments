@@ -18,13 +18,13 @@ namespace Assignment10.Commands
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            // (Optional) Warn if not in a plan view
+            
             if (!(doc.ActiveView is ViewPlan vp) || vp.ViewType != ViewType.FloorPlan)
             {
                 TaskDialog.Show("Assignment10", "Tip: Open a Floor Plan view for best results.\nContinuing anyway...");
             }
 
-            // Get selected wall or prompt to pick
+            
             Wall wall = null;
             var selIds = uidoc.Selection.GetElementIds();
             if (selIds.Count == 1)
@@ -43,19 +43,13 @@ namespace Assignment10.Commands
                 return Result.Cancelled;
             }
 
-            // Model: extract openings
+            
             var openings = OpeningExtractor.GetOpenings(doc, wall);
 
-            // ViewModel: shape data
+            
             var vm = new WallOpeningsViewModel(wall, openings);
 
-            // Show message box (TaskDialog)
-            //TaskDialog td = new TaskDialog("Wall Openings");
-            //td.MainInstruction = $"Openings in wall: \"{vm.WallName}\" (Level: {vm.WallLevelName ?? "-"})";
-            //td.MainContent = vm.AsSummaryText();
-            //td.Show();
-
-            // (Optional) WPF view (uncomment if you want rich UI)
+            
             var win = new Assignment10.Commands.Views.WallOpeningsWindow { DataContext = vm };
             win.ShowDialog();
 
