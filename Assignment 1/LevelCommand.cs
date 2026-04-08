@@ -14,6 +14,13 @@ namespace Asignment1.Commands
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     public class LevelCommand : IExternalCommand
     {
+/// <summary>
+/// 
+/// </summary>
+/// <param name="commandData"></param>
+/// <param name="message"></param>
+/// <param name="elements"></param>
+/// <returns></returns>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication app = commandData.Application;
@@ -22,7 +29,6 @@ namespace Asignment1.Commands
 
             try
             {
-                // Collect levels
                 var levels = new FilteredElementCollector(doc)
                     .OfClass(typeof(Level))
                     .Cast<Level>()
@@ -34,7 +40,9 @@ namespace Asignment1.Commands
                     })
                     .ToList();
 
-                var trial = new FilteredElementCollector(doc).WhereElementIsElementType();
+           
+
+                //var trial = new FilteredElementCollector(doc).WhereElementIsElementType();
 
                 var floorPlans = new FilteredElementCollector(doc)
                     .OfClass(typeof(ViewPlan))
@@ -61,14 +69,12 @@ namespace Asignment1.Commands
                     .OrderBy(x => x.ElevationFeet)
                     .ToList();
 
-                // Create and show WPF window (modal) with Revit as owner
                 var window = new LevelPlanWindow(items);
 
-                // Set Revit main window as owner so the dialog behaves properly
                 var revitHwnd = app.MainWindowHandle;
                 var helper = new WindowInteropHelper(window) { Owner = revitHwnd };
 
-                window.ShowDialog(); // modal — simplest & safest
+                window.ShowDialog();
 
                 return Result.Succeeded;
             }

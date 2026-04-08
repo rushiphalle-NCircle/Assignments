@@ -1,6 +1,4 @@
-﻿
-// Assignment11/ViewModel/MyViewModel.cs
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -34,9 +32,6 @@ namespace Assignment11.ViewModel
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
-    /// <summary>
-    /// Minimal RelayCommand implementation.
-    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly System.Action<object> _execute;

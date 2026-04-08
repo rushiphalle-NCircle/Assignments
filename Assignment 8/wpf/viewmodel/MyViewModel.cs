@@ -24,11 +24,9 @@ namespace Assignment8.Commands.ViewModel
 
             Nodes = new ObservableCollection<TreeNode>();
 
-            // Root node = document title
             var root = new TreeNode(doc.Title);
             Nodes.Add(root);
 
-            // Floor Plans as children
             var plans = new FilteredElementCollector(doc)
                 .OfClass(typeof(ViewPlan));
 
@@ -41,12 +39,10 @@ namespace Assignment8.Commands.ViewModel
             }
         }
 
-        // Called by the View when a plan node is clicked
         public void ActivateView(TreeNode node)
         {
             if (node?.ViewId == null) return;
 
-            // Set target and raise external event to change active view
             _handler.TargetViewId = node.ViewId;
             _externalEvent.Raise();
         }

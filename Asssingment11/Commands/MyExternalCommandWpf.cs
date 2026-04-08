@@ -9,10 +9,6 @@ using Assignment11.ViewModel;
 
 namespace Assignment11.Commands
 {
-    
-    /// <summary>
-    /// ExternalCommand that opens the MVVM WPF window showing level-wise counts.
-    /// </summary>
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.ReadOnly)]
     public class MyExternalCommandWpf : IExternalCommand
     {
@@ -22,14 +18,13 @@ namespace Assignment11.Commands
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            // Build the ViewModel with current Revit Document
 
-            var vm = new Assignment11.ViewModel.MyViewModel(doc);
+            var vm = new MyViewModel(doc);
 
             var view = new inmbuild.Views.MyView();
-            view.DataContext = vm;   // ✅ CORRECT PLACE
+            view.DataContext = vm;   
 
-            var helper = new System.Windows.Interop.WindowInteropHelper(view)
+            var helper = new WindowInteropHelper(view)
             {
                 Owner = uiapp.MainWindowHandle
             };

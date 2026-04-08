@@ -13,11 +13,11 @@ namespace Assignment7.Commands.ViewModel
         {
             Nodes = new ObservableCollection<TreeNode>();
 
-            // Root: document title
+           
             var root = new TreeNode(doc.Title);
             Nodes.Add(root);
 
-            // Children: Floor Plans
+            
             var collector = new FilteredElementCollector(doc)
                 .OfClass(typeof(ViewPlan));
 

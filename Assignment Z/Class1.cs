@@ -1,10 +1,8 @@
-﻿
-using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-
 using System;
 
 namespace A
@@ -58,7 +56,7 @@ namespace A
                 Line l2 = lc2.Curve as Line;
                 if (l1 == null || l2 == null)
                 {
-                    message = "This simple tool supports only straight pipes.";
+                    message = "This simple tool supports only straight pipes."                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
                     return Result.Failed;
                 }
 

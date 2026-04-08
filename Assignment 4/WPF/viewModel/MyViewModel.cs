@@ -45,7 +45,6 @@ namespace Assignments4.Commands.viewModel
                 _selectedWall = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedWallName));
-                // Project Dictionary -> List<KeyValuePair<string,string>> for DataGrid
                 SelectedWallProperties = _selectedWall?.WallProperties?
                     .Select(kv => new KeyValuePair<string, string>(kv.Key, kv.Value))
                     .ToList() ?? new List<KeyValuePair<string, string>>();
@@ -74,7 +73,7 @@ namespace Assignments4.Commands.viewModel
             ShowWallCommand = new RelayCommand(
                 execute: param =>
                 {
-                    // Accept either WallInfo or wall name string
+                    
                     if (param is WallInfo wall)
                     {
                         SelectedWall = wall;
@@ -116,7 +115,7 @@ namespace Assignments4.Commands.viewModel
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
-    // Simple RelayCommand implementation
+   
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;

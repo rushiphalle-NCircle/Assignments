@@ -16,7 +16,6 @@ namespace Assignment8.Commands.Views
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            // If the selected item is a plan node, ask VM to activate it
             var node = e.NewValue as TreeNode;
             var vm = DataContext as TreeViewViewModel;
             vm?.ActivateView(node);

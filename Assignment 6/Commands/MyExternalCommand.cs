@@ -128,7 +128,6 @@ namespace Assignment6.Commands
                         var elem = doc.GetElement(seg.ElementId);
                         if (elem is Wall w)
                             wallIds.Add(w.Id);
-                        // NOTE: boundaries can include non-wall elements (room separation lines, columns, etc.)
                     }
                 }
             }
@@ -142,8 +141,8 @@ namespace Assignment6.Commands
             if (wallModels.Count == 0)
                 wallModels.Add(new Walls { Id = ElementId.InvalidElementId, Name = "No bounding walls found" });
 
-            var window = new Assignment6.Commands.Views.MyView2(
-                new Assignment6.Commands.ViewModel.MyViewModel2(wallModels)
+            var window = new Views.MyView2(
+                new ViewModel.MyViewModel2(wallModels)
             );
 
             window.ShowDialog();

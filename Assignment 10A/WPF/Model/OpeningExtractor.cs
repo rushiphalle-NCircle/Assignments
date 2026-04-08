@@ -13,7 +13,7 @@ namespace Assignment10.Commands.Model
         {
             var result = new List<OpeningInfo>();
 
-            // Doors + Windows hosted on the selected wall
+           
             var hostedFamilies = new FilteredElementCollector(doc)
                 .OfClass(typeof(FamilyInstance))
                 .WhereElementIsNotElementType()
@@ -31,14 +31,14 @@ namespace Assignment10.Commands.Model
                     CategoryName = fi.Category?.Name ?? "-",
                     TypeName = fi.Symbol?.Name ?? fi.Name,
                     LevelName = doc.GetElement(fi.LevelId) is Level lvl ? lvl.Name : null,
-                    WidthMm = TryGetSizeMm(doc, fi, isWidth: true),
-                    HeightMm = TryGetSizeMm(doc, fi, isWidth: false),
+                    WidthFt = TryGetSizeMm(doc, fi, isWidth: true),
+                    HeightFt = TryGetSizeMm(doc, fi, isWidth: false),
                     Notes = "Hosted family"
                 };
                 result.Add(info);
             }
 
-            // Opening elements created with the Opening tool
+            
             var openings = new FilteredElementCollector(doc)
                 .OfClass(typeof(Opening))
                 .WhereElementIsNotElementType()
@@ -53,8 +53,8 @@ namespace Assignment10.Commands.Model
                 {
                     double ftWidth = Math.Abs(bb.Max.X - bb.Min.X);
                     double ftHeight = Math.Abs(bb.Max.Z - bb.Min.Z);
-                    w = ConvertToMm(ftWidth);
-                    h = ConvertToMm(ftHeight);
+                    w = ftWidth;
+                    h = ftHeight;
                 }
 
                 var info = new OpeningInfo
@@ -63,8 +63,8 @@ namespace Assignment10.Commands.Model
                     CategoryName = "Opening",
                     TypeName = "Wall Opening",
                     LevelName = doc.GetElement(op.LevelId) is Level lvl ? lvl.Name : null,
-                    WidthMm = w,
-                    HeightMm = h,
+                    WidthFt = w,
+                    HeightFt = h,
                     Notes = "Opening element"
                 };
                 result.Add(info);
@@ -88,7 +88,7 @@ namespace Assignment10.Commands.Model
             {
                 var p = fi.get_Parameter(bip);
                 if (p != null && p.HasValue)
-                    return ConvertToMm(p.AsDouble());
+                    return p.AsDouble();
             }
 
             // Fallback: lookup by common parameter names
@@ -101,7 +101,7 @@ namespace Assignment10.Commands.Model
             {
                 var p = fi.LookupParameter(name);
                 if (p != null && p.HasValue && p.StorageType == StorageType.Double)
-                    return ConvertToMm(p.AsDouble());
+                    return p.AsDouble();
             }
 
             // Final fallback: bounding box estimation
@@ -109,17 +109,11 @@ namespace Assignment10.Commands.Model
             if (bb != null)
             {
                 return isWidth
-                    ? ConvertToMm(Math.Abs(bb.Max.X - bb.Min.X))
-                    : ConvertToMm(Math.Abs(bb.Max.Z - bb.Min.Z));
+                    ? Math.Abs(bb.Max.X - bb.Min.X)
+                    : Math.Abs(bb.Max.Z - bb.Min.Z);
             }
 
             return null;
-        }
-
-        private static double ConvertToMm(double internalFeet)
-        {
-            // Revit internal units are feet; convert to millimeters
-            return UnitUtils.ConvertFromInternalUnits(internalFeet, UnitTypeId.Millimeters);
         }
     }
 }

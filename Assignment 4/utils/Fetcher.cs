@@ -18,7 +18,7 @@ namespace Assignments.Assignment_4.utils
         {
             var Properties = new Dictionary<string, string>();
 
-            // ---- Helpful metadata ----
+           
             Properties["ElementId"] = wall.Id.IntegerValue.ToString();
 
             if (wall.Category != null) Properties["Category"] = wall.Category.Name;
@@ -29,18 +29,18 @@ namespace Assignments.Assignment_4.utils
             var baseLevel = doc.GetElement(wall.LevelId) as Level;
             if (baseLevel != null) Properties["Base Level"] = baseLevel.Name;
 
-            // ---- Instance parameters ----
+            
             foreach (Parameter p in wall.Parameters)
             {
                 string name = p.Definition?.Name ?? $"Param {p.Id.IntegerValue}";
 
-                // Prefer formatted value, then fallbacks
+               
                 string value = null;
                 try
                 {
                     value = p.AsValueString();
                 }
-                catch { /* some params don't support AsValueString */ }
+                catch { }
 
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -65,12 +65,12 @@ namespace Assignments.Assignment_4.utils
                     }
                 }
 
-                // Avoid duplicate keys
+                
                 if (Properties.ContainsKey(name)) name = $"{name} ({p.Id.IntegerValue})";
                 Properties[name] = value;
             }
 
-            // ---- Type parameters ----
+         
             if (wallType != null)
             {
                 foreach (Parameter p in wallType.Parameters)

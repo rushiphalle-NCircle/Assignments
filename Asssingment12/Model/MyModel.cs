@@ -1,13 +1,10 @@
-﻿
-// Assignment12/Model/MyModel.cs
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 using Autodesk.Revit.DB;
 
 namespace Assignment12.Model
 {
-    // ---------- Tree nodes ----------
     public abstract class TreeNode
     {
         public string Name { get; set; }
@@ -42,7 +39,6 @@ namespace Assignment12.Model
         }
     }
 
-    // ---------- Tree builder ----------
     public static class TreeBuilder
     {
         public static ObservableCollection<LevelNode> Build(Document doc)
@@ -59,7 +55,6 @@ namespace Assignment12.Model
             {
                 var levelNode = new LevelNode(level);
 
-                // Walls (LEVEL_PARAM)
                 int wallCount = new FilteredElementCollector(doc)
                     .OfCategory(BuiltInCategory.OST_Walls)
                     .WhereElementIsNotElementType()
@@ -69,7 +64,6 @@ namespace Assignment12.Model
                 if (wallCount > 0)
                     levelNode.Children.Add(new CategoryCountNode("Walls", BuiltInCategory.OST_Walls, wallCount, level.Id));
 
-                // Doors (FamilyInstance.LevelId)
                 int doorCount = new FilteredElementCollector(doc)
                     .OfCategory(BuiltInCategory.OST_Doors)
                     .OfClass(typeof(FamilyInstance))
@@ -80,7 +74,6 @@ namespace Assignment12.Model
                 if (doorCount > 0)
                     levelNode.Children.Add(new CategoryCountNode("Doors", BuiltInCategory.OST_Doors, doorCount, level.Id));
 
-                // Windows (FamilyInstance.LevelId)
                 int windowCount = new FilteredElementCollector(doc)
                     .OfCategory(BuiltInCategory.OST_Windows)
                     .OfClass(typeof(FamilyInstance))
@@ -99,10 +92,9 @@ namespace Assignment12.Model
         }
     }
 
-    // ---------- Selection request ----------
     public class SelectionRequest
     {
         public ElementId LevelId { get; set; }
-        public BuiltInCategory? Category { get; set; } // null = select all elements on level
+        public BuiltInCategory? Category { get; set; } 
     }
 }

@@ -11,9 +11,6 @@ using Autodesk.Revit.UI;
 
 namespace Assignment13.Commands
 {
-    /// <summary>
-    /// VM for the door parameters window. Performs the Revit transaction on Apply.
-    /// </summary>
     public class DoorParametersViewModel
     {
         private readonly UIDocument _uidoc;
@@ -130,11 +127,6 @@ namespace Assignment13.Commands
             ShowInfoMessage?.Invoke($"Applied: {successCount}, Skipped: {skippedCount}, Errors: {errorCount}");
             CloseRequested?.Invoke();
         }
-
-        /// <summary>
-        /// Sets the parameter value, handling string, integer, double (with unit conversion).
-        /// Doubles are interpreted in the project's display units for that parameter spec.
-        /// </summary>
         private static bool SetParameterValue(Document doc, Parameter param, string input)
         {
             try
@@ -166,12 +158,10 @@ namespace Assignment13.Commands
                         {
                             if (string.IsNullOrWhiteSpace(input))
                             {
-                                // If empty and double, set to 0.0
                                 param.Set(0.0);
                                 return true;
                             }
 
-                            // Parse using current culture; user may input in local format
                             if (!double.TryParse(input, NumberStyles.Float, CultureInfo.CurrentCulture, out double val))
                                 return false;
 
@@ -195,7 +185,6 @@ namespace Assignment13.Commands
                                 return true;
                             }
 #else
-                            // Legacy Units API fallback: assume input is already internal units (feet for lengths)
                             param.Set(val);
                             return true;
 #endif
@@ -209,7 +198,6 @@ namespace Assignment13.Commands
                                 return true;
                             }
 
-                            // Try to resolve by Id; otherwise leave unchanged
                             if (int.TryParse(input, NumberStyles.Integer, CultureInfo.InvariantCulture, out int rawId))
                             {
                                 var eid = new ElementId(rawId);
@@ -230,9 +218,6 @@ namespace Assignment13.Commands
         }
     }
 
-    /// <summary>
-    /// Simple ICommand implementation.
-    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;

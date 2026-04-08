@@ -240,4 +240,8 @@
     <Folder Include="images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>echo "Build Started..."
+echo "Prebuild is in action..."</PreBuildEvent>
+  </PropertyGroup>
 </Project>

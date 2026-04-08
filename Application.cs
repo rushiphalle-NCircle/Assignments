@@ -1,13 +1,8 @@
-﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-
+﻿using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 
 namespace Assignments
@@ -78,9 +73,6 @@ namespace Assignments
             return Result.Succeeded;
         }
     }
-    
-
-
 
     public class Ribbon
     {

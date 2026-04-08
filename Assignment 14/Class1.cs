@@ -16,11 +16,10 @@ namespace Assignment14.Commands
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            // === Configure names/templates here ===
-            string configuredLevelName = "Level 1";          // optional; will fallback if not found
-            string floorPlanTemplateName = "T-FloorPlan";    // optional
-            string ceilingPlanTemplateName = "T-Ceiling";    // optional
-            string view3DTemplateName = "T-3D-Isometric";    // optional
+            string configuredLevelName = "Level 1";         
+            string floorPlanTemplateName = "T-FloorPlan";    
+            string ceilingPlanTemplateName = "T-Ceiling";    
+            string view3DTemplateName = "T-3D-Isometric";    
 
             string floorPlanNamePattern = "{0} - Floor";
             string ceilingPlanNamePattern = "{0} - Ceiling";
@@ -28,17 +27,14 @@ namespace Assignment14.Commands
 
             try
             {
-                // Load templates (if they exist)
                 View floorTpl = GetTemplateByName(doc, floorPlanTemplateName);
                 View ceilingTpl = GetTemplateByName(doc, ceilingPlanTemplateName);
                 View v3dTpl = GetTemplateByName(doc, view3DTemplateName);
 
-                // Try configured name first
                 Level level = GetLevelByName(doc, configuredLevelName);
 
                 if (level == null)
                 {
-                    // Offer user choices
                     TaskDialog td = new TaskDialog("Level not found");
                     td.MainInstruction = $"Level '{configuredLevelName}' was not found.";
                     td.MainContent = "Choose how to proceed:";
@@ -69,7 +65,6 @@ namespace Assignment14.Commands
                     }
                     else if (tdr == TaskDialogResult.CommandLink2)
                     {
-                        // Pick a Level
                         Reference picked = uidoc.Selection.PickObject(ObjectType.Element, new LevelSelectionFilter(), "Select a Level");
                         level = doc.GetElement(picked.ElementId) as Level;
                         if (level == null)
@@ -89,7 +84,6 @@ namespace Assignment14.Commands
                     }
                     else if (tdr == TaskDialogResult.CommandLink3)
                     {
-                        // All levels
                         var allLevels = new FilteredElementCollector(doc)
                             .OfClass(typeof(Level)).Cast<Level>()
                             .OrderBy(l => l.Elevation).ToList();
@@ -120,7 +114,6 @@ namespace Assignment14.Commands
                 }
                 else
                 {
-                    // Configured level was found
                     using (TransactionGroup tg = new TransactionGroup(doc, $"Create Views - {level.Name}"))
                     {
                         tg.Start();
@@ -133,7 +126,6 @@ namespace Assignment14.Commands
             }
             catch (Autodesk.Revit.Exceptions.OperationCanceledException)
             {
-                // User cancelled a pick
                 return Result.Cancelled;
             }
             catch (Exception ex)
@@ -142,8 +134,6 @@ namespace Assignment14.Commands
                 return Result.Failed;
             }
         }
-
-        // ---------- Helpers ----------
 
         private static void CreateViewsForLevel(
             Document doc,
@@ -155,7 +145,6 @@ namespace Assignment14.Commands
             string ceilingPlanNamePattern,
             string view3DName)
         {
-            // Floor Plan
             using (Transaction tx = new Transaction(doc, $"Create Floor Plan - {level.Name}"))
             {
                 tx.Start();
@@ -168,7 +157,6 @@ namespace Assignment14.Commands
                 tx.Commit();
             }
 
-            // Ceiling Plan
             using (Transaction tx = new Transaction(doc, $"Create Ceiling Plan - {level.Name}"))
             {
                 tx.Start();
@@ -181,7 +169,6 @@ namespace Assignment14.Commands
                 tx.Commit();
             }
 
-            // 3D Isometric (one per run; if you want one per level, adjust naming accordingly)
             using (Transaction tx = new Transaction(doc, $"Create 3D View"))
             {
                 tx.Start();
@@ -247,7 +234,6 @@ namespace Assignment14.Commands
                 .Any(v => !v.IsTemplate && v.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        // Filter only Level elements for selection
         class LevelSelectionFilter : ISelectionFilter
         {
             public bool AllowElement(Element elem) => elem is Level;

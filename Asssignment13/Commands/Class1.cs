@@ -22,11 +22,9 @@ namespace Assignment13.Commands
 
             try
             {
-                // Try using current selection first
                 var selIds = uidoc.Selection.GetElementIds();
                 var doorIds = FilterDoorIds(doc, selIds).ToList();
 
-                // If no doors selected, prompt user to pick doors
                 if (doorIds.Count == 0)
                 {
                     var picked = uidoc.Selection.PickObjects(ObjectType.Element, new DoorSelectionFilter(),
@@ -40,12 +38,11 @@ namespace Assignment13.Commands
                     return Result.Cancelled;
                 }
 
-                // Create VM and show WPF window
                 var vm = new DoorParametersViewModel(uidoc, doorIds.ToArray());
                 var win = new DoorParametersWindow();
                 win.BindVM(vm, uiapp.MainWindowHandle);
 
-                win.ShowDialog(); // Transaction & apply are handled by the VM when the user clicks "Apply"
+                win.ShowDialog(); 
                 return Result.Succeeded;
             }
             catch (Autodesk.Revit.Exceptions.OperationCanceledException)

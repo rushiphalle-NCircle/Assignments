@@ -1,6 +1,4 @@
-﻿
-// File: ViewModels.cs
-using Assignment6.Commands.Model;
+﻿using Assignment6.Commands.Model;
 using Autodesk.Revit.UI;
 
 using System.Collections.ObjectModel;
@@ -8,7 +6,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using System.Windows; // for Application.Current.Dispatcher
+using System.Windows; 
 
 namespace Assignment6.Commands.ViewModel
 {
@@ -36,7 +34,7 @@ namespace Assignment6.Commands.ViewModel
                 if (selectedFloor != null)
                 {
                     _handler.TargetFloorViewId = selectedFloor.Id;
-                    _event.Raise(); // trigger rooms retrieval
+                    _event.Raise(); 
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedFloor)));
             }
@@ -55,11 +53,11 @@ namespace Assignment6.Commands.ViewModel
         public MyViewModel(IEnumerable<FloorModel> views, ExternalEvent externalEvent, Assignment6.Commands.MyExternalCommand handler)
         {
             Floors = new ObservableCollection<FloorModel>(views);
-            Rooms = new ObservableCollection<RoomModel>(); // initialize to avoid null bindings
+            Rooms = new ObservableCollection<RoomModel>(); 
             _event = externalEvent;
             _handler = handler;
 
-            // Update Rooms on WPF UI thread
+            
             _handler.triggerUpdate += rooms =>
             {
                 Application.Current?.Dispatcher.Invoke(() =>
@@ -82,7 +80,7 @@ namespace Assignment6.Commands.ViewModel
 
         private void HandleActivate()
         {
-            var handler = new Assignment6.Commands.MyExternalCommand1
+            var handler = new MyExternalCommand1
             {
                 TargetRoomId = selectedRoom.Id,
                 TargetFloorViewId = selectedFloor.Id
@@ -101,8 +99,6 @@ namespace Assignment6.Commands.ViewModel
             Items = new ObservableCollection<Walls>(items);
         }
     }
-
-    // Simple RelayCommand
     public class RelayCommand : ICommand
     {
         private readonly System.Action<object> _execute;

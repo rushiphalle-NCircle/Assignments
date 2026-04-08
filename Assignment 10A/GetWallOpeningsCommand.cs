@@ -18,13 +18,6 @@ namespace Assignment10.Commands
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            
-            if (!(doc.ActiveView is ViewPlan vp) || vp.ViewType != ViewType.FloorPlan)
-            {
-                TaskDialog.Show("Assignment10", "Tip: Open a Floor Plan view for best results.\nContinuing anyway...");
-            }
-
-            
             Wall wall = null;
             var selIds = uidoc.Selection.GetElementIds();
             if (selIds.Count == 1)

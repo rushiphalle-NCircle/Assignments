@@ -25,10 +25,6 @@ namespace Assignment13.Commands
             get => _value;
             set { _value = value; OnPropertyChanged(); }
         }
-
-        /// <summary>
-        /// If false, this row will be skipped when applying.
-        /// </summary>
         public bool Enabled
         {
             get => _enabled;
