@@ -18,11 +18,11 @@ jobs:
       - name: Set up MSBuild
         uses: microsoft/setup-msbuild@v1
 
-      - name: Restore dependencies (.NET Framework 4.8 with Debug)
-        run: msbuild "Assignments.csproj" /t:Restore /p:Configuration=Debug /p:Platform="Any CPU"
+      - name: Restore dependencies
+        run: msbuild "Assignments.csproj" /t:Restore /p:Configuration=Debug /p:Platform=AnyCPU
 
-      - name: Build the project (.NET Framework 4.8 with Debug)
-        run: msbuild "Assignments.csproj" /p:Configuration=Debug /p:Platform="Any CPU"
+      - name: Build project
+        run: msbuild "Assignments.csproj" /p:Configuration=Debug /p:Platform=AnyCPU
   # dotnet-Core-8:   
   #   name: Build and Validate framework 8 (Windows 2022)
   #   runs-on: windows-2022
