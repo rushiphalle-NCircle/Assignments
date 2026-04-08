@@ -2,7 +2,7 @@ name: Revit .NET Build
  
 on:
   push:
-    branches: [ "main", "develop", "feature_*" ]
+    branches: [ "master", "develop", "feature_*" ]
   pull_request:
     branches: [ "main", "develop" ]
  
