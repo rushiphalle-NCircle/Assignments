@@ -1,28 +1,36 @@
 name: Revit .NET Build
-
+ 
 on:
   push:
     branches: [ "master", "develop", "feature_*" ]
   pull_request:
     branches: [ "main", "develop" ]
-
+ 
 jobs:
   dotnet-framework-48:
-    name: Build and Validate framework 4.8 (Windows 2022)
+    name: Build .NET Framework 4.8 (Windows 2022)
     runs-on: windows-2022
-
+ 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2 
-
-      - name: Set up MSBuild
+        uses: actions/checkout@v4
+ 
+      # ✅ Install NuGet (IMPORTANT for packages.config)
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1
+ 
+      # ✅ Restore packages (THIS is the key fix)
+      - name: Restore NuGet Packages
+        run: nuget restore Assignments.csproj
+ 
+      # ✅ Setup MSBuild
+      - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
-
-      - name: Restore dependencies
-        run: msbuild "Assignments.csproj" /t:Restore /p:Configuration=Debug /p:Platform=AnyCPU
-
-      - name: Build project
-        run: msbuild "Assignments.csproj" /p:Configuration=Debug /p:Platform=AnyCPU
+ 
+      # ✅ Build
+      - name: Build Project
+        run: msbuild Assignments.csproj /p:Configuration=Debug /p:Platform="Any CPU"
+ 
   # dotnet-Core-8:   
   #   name: Build and Validate framework 8 (Windows 2022)
   #   runs-on: windows-2022
