@@ -15,14 +15,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
  
-      # ✅ Install NuGet (IMPORTANT for packages.config)
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1
- 
-      # ✅ Restore packages (THIS is the key fix)
-      - name: Restore NuGet Packages
-        run: nuget restore Assignments.csproj
- 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Restore Packages
+        run: msbuild Assignments.csproj /t:Restore
+
       # ✅ Setup MSBuild
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
