@@ -20,15 +20,7 @@ jobs:
         - name: Restore dependencies (.NET Framework 4.8 with Debug23)
           run: msbuild "Assignments.csproj" /t:Restore /p:Configuration="Debug" /p:Platform="Any CPU"
         - name: Build the project (.NET Framework 4.8 with Debug 23)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/p:Configuration="Debug R23" /p:Platform="Any CPU"  
-        - name: Restore dependencies (.NET Framework 4.8 with Release 23)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/t:Restore /p:Configuration="Release R23" /p:Platform="Any CPU"
-        - name: Build the project (.NET Framework 4.8 with Release23)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/p:Configuration="Release R23" /p:Platform="Any CPU"
-        - name: Restore dependencies (.NET Framework 4.8 with Debug24)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/t:Restore /p:Configuration="Debug R24" /p:Platform="Any CPU"
-        - name: Build the project (.NET Framework 4.8 with Debug24)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/p:Configuration="Debug R24" /p:Platform="Any CPU"  
+          run: msbuild "Assignments.csproj" "/p:Configuration="Debug" /p:Platform="Any CPU"  
   # dotnet-Core-8:   
   #   name: Build and Validate framework 8 (Windows 2022)
   #   runs-on: windows-2022
