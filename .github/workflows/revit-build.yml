@@ -18,7 +18,7 @@ jobs:
           with:
                 dotnet-version: '4.8'		
         - name: Restore dependencies (.NET Framework 4.8 with Debug23)
-          run: msbuild "xyz.csproj" /t:Restore /p:Configuration="Debug" /p:Platform="Any CPU"
+          run: msbuild "Assignments.csproj" /t:Restore /p:Configuration="Debug" /p:Platform="Any CPU"
         - name: Build the project (.NET Framework 4.8 with Debug 23)
           run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/p:Configuration="Debug R23" /p:Platform="Any CPU"  
         - name: Restore dependencies (.NET Framework 4.8 with Release 23)
