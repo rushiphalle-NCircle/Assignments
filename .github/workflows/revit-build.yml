@@ -27,7 +27,7 @@ jobs:
  
       # ✅ Build
       - name: Build Project
-        run: msbuild Assignments.csproj /p:Configuration=Debug /p:Platform="Any CPU"
+        run: msbuild Assignments.csproj /p:Configuration=Debug /p:Platform="AnyCPU"
  
   # dotnet-Core-8:   
   #   name: Build and Validate framework 8 (Windows 2022)
