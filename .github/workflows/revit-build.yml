@@ -1,34 +1,28 @@
 name: Revit .NET Build
- 
+
 on:
   push:
     branches: [ "master", "develop", "feature_*" ]
   pull_request:
     branches: [ "main", "develop" ]
- 
+
 jobs:
-  dotnet-framework-48:   
+  dotnet-framework-48:
     name: Build and Validate framework 4.8 (Windows 2022)
     runs-on: windows-2022
+
     steps:
-        - name: Checkout Code
-          uses: actions/checkout@v2 
-        - name: Set up .NET Framework 4.8
-          uses: microsoft/setup-msbuild@v1
-          with:
-                dotnet-version: '4.8'		
-        - name: Restore dependencies (.NET Framework 4.8 with Debug23)
-          run: msbuild "Assignments.csproj" /t:Restore /p:Configuration="Debug" /p:Platform="Any CPU"
-        - name: Build the project (.NET Framework 4.8 with Debug 23)
-          run: msbuild "Assignments.csproj" "/p:Configuration="Debug" /p:Platform="Any CPU"  
-        - name: Restore dependencies (.NET Framework 4.8 with Release 23)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/t:Restore /p:Configuration="Release R23" /p:Platform="Any CPU"
-        - name: Build the project (.NET Framework 4.8 with Release23)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/p:Configuration="Release R23" /p:Platform="Any CPU"
-        - name: Restore dependencies (.NET Framework 4.8 with Debug24)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/t:Restore /p:Configuration="Debug R24" /p:Platform="Any CPU"
-        - name: Build the project (.NET Framework 4.8 with Debug24)
-          run: msbuild "Belit-SA/Belit_SA/BeLit SA.csproj"/p:Configuration="Debug R24" /p:Platform="Any CPU"  
+      - name: Checkout Code
+        uses: actions/checkout@v2 
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Restore dependencies (.NET Framework 4.8 with Debug)
+        run: msbuild "Assignments.csproj" /t:Restore /p:Configuration=Debug /p:Platform="Any CPU"
+
+      - name: Build the project (.NET Framework 4.8 with Debug)
+        run: msbuild "Assignments.csproj" /p:Configuration=Debug /p:Platform="Any CPU"
   # dotnet-Core-8:   
   #   name: Build and Validate framework 8 (Windows 2022)
   #   runs-on: windows-2022
